@@ -1,3 +1,18 @@
 img{
   border-radius: 23px;
 }
+
+.favourite-btn{
+  border: none;
+  
+}
+.movie-grid{
+  display: grid;
+  grid-template-rows: repeat(3,1fr);
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin-left: 9rem;
+  margin-top: 5rem;
+}
+.top-div{
+  position: relative;
+}
