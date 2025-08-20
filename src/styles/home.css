@@ -3,7 +3,7 @@
     justify-content: center;
 }
 .search-form{
-    margin: 3rem 0;
+    margin: 4.3rem 0;
     width: 47rem;
     display: flex;
     justify-content: center;
@@ -15,8 +15,14 @@
     padding: 0.7rem;
     width: 29rem;
     color: white;
+    border-radius: 0.25rem;
     background-color: rgb(56, 54, 54);
     border: 0;
+}
+.search-input:focus{
+ outline: 0.05rem solid red;
+ border-radius: 0.5rem;
+ /* box-shadow: 0 0 10px gray,0 0 20px gray,0 0 30px gray; */
 }
 .search-btn{
     width: 7rem;
