@@ -1,4 +1,4 @@
-
+import "../styles/favourites.css"
 export default function Favourite(){
     return(
         <div className="favourites-empty">
