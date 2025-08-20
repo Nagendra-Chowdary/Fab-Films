@@ -93,7 +93,7 @@ export default function Home() {
                 {movies.map(movie=>{
                     return(
                         // <MovieCard movie={movie} key={movie.id} />
-                        (movie.titleText.text).toLowerCase().startsWith(searchQuery)&&<MovieCard movie={movie} key={movie.id}/>
+                        ((movie.titleText.text).toLowerCase()).startsWith(searchQuery.toLowerCase())&&<MovieCard movie={movie} key={movie.id}/>
                     )})
                 }
             </div>
