@@ -1,49 +1,104 @@
 import { useState } from "react";
 import MovieCard from "../components/MovieCard";
-import "../styles/home.css"
-
+import "../css/Home.css"
+import movieslist from "../services/movies.json"
+// import { searchMovies } from "../services/api";
+// import { getPopularMovies } from "../services/api";
 export default function Home() {
-    const movies=[
-        {id:1 ,title:"1mov",url:'Screenshot from 2024-05-23 19-48-44.png',release_date:2017},
-        {id:2 ,title:"2mov",url:'Screenshot from 2024-05-23 19-48-44.png',release_date:2017},
-        {id:3 ,title:"3movie",url:'Screenshot from 2024-05-23 19-48-44.png',release_date:2017},
-        {id:4 ,title:"2mov",url:'Screenshot from 2024-05-23 19-48-44.png',release_date:2017},
-        {id:5 ,title:"3movie",url:'Screenshot from 2024-05-23 19-48-44.png',release_date:2017},
-        {id:6 ,title:"2mov",url:'Screenshot from 2024-05-23 19-48-44.png',release_date:2017},
-        {id:7 ,title:"3movie",url:'Screenshot from 2024-05-23 19-48-44.png',release_date:2017},
-    ];
 
-    const handleSubmit=(e)=>{
+    const [movies,setMovies]=useState(movieslist);
+    const [searchQuery,setQuery]=useState("");
+    // const [error,setError]=useState(null);
+    // const [loading,setLoading]=useState(true);
+    // console.log(error);
+    // console.log(loading);
+    
+    // useEffect(()=>{
+    //     const loadPopularMovies=async()=>{
+
+        
+    //     try{
+    //         console.log("loading");
+    //         const popularMovies=await getPopularMovies();
+    //         setMovies(popularMovies);
+           
+    //     }
+    //     catch(err){
+    //         console.log(err);
+    //         setError("Failed to load movies.....");
+            
+    //     }
+    //     finally{
+    //         setLoading(false);
+
+    //     }
+    //     }
+    //     loadPopularMovies();
+    // },[]);
+
+
+
+    const handleSubmit= async(e)=>{
         e.preventDefault();
-    //   setQuery(e.target.value)
+    //     if(!searchQuery.trim())return
+    //     if(loading)return   //won't allow us to search while we are already searching for something.
+    //     setLoading(true)
+    //    try{
+    //       const searchResults=await searchMovies(searchQuery)
+    //       setMovies(searchResults)
+    //       setError(null)
+    //    }catch(err){
+    //       console.log(err);
+    //       setError("Failed to load movies......");  if(!searchQuery.trim())return
+    //     if(loading)return   //won't allow us to search while we are already searching for something.
+    //     setLoading(true)
+    //    try{
+    //       const searchResults=await searchMovies(searchQuery)
+    //       setMovies(searchResults)
+    //       setError(null)
+    //    }catch(err){
+    //       console.log(err);
+    //       setError("Failed to load movies......");
+          
+    //    }finally{
+    //     setLoading(false);
+    //    }
+
+          
+    //    }finally{
+    //     setLoading(false);
+    //    }
+
+        // setLoading(true)
+    //   setQuery("")
     }
     const searchChange=(e)=>{
     setQuery(e.target.value);
+    // setMovies(movies.filter((movie)=>{
+    //     return 
+    // }))
     }
-    const [searchQuery,setQuery]=useState("");
     return(
         <div className="home">
-            <div className="search-bar">
                 <form onSubmit={handleSubmit} className="search-form">
                 <input type="text" placeholder="search for movies..." 
                 className="search-input" 
                 value={searchQuery}
                 onChange={searchChange}
                 />
-                <button type="submit" className="search-btn">search</button>
+                <button type="submit" className="search-button">search</button>
                 </form>
-            </div>
-            <div className="movie-grid">
+            
+            <div className="movies-grid">
                 {movies.map(movie=>{
                     return(
-                        <MovieCard movie={movie} />
-                        // movie.title.toLowerCase().startsWith(searchQuery)&&<MovieCard movie={movie} />
+                        // <MovieCard movie={movie} key={movie.id} />
+                        (movie.titleText.text).toLowerCase().startsWith(searchQuery)&&<MovieCard movie={movie} key={movie.id}/>
                     )})
                 }
-                
-                
             </div>
-        </div>
-    )
+            
+            
+            </div>)
 }
 
